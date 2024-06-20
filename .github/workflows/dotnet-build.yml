@@ -12,17 +12,44 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repository to the runner
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
+      # Setup .NET Core SDK
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '6.0.x'
 
+      # Display .NET version
+      - name: Display .NET version
+        run: dotnet --version
+
+      # List files in the root directory (for debugging)
+      - name: List files in root directory
+        run: ls -la
+
+      # Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore /github4women.csproj
+        run: dotnet restore ./github4women.csproj
 
+      # Build the project
       - name: Build
-        run: dotnet build --configuration Release
+        run: dotnet build --no-restore --configuration Release ./github4women.csproj
 
+      # Run tests
+      - name: Run tests
+        run: dotnet test --no-build --verbosity normal --configuration Release ./github4women.csproj
+
+      # Run a custom script
+      - name: Custom script
+        run: |
+          echo "Running custom script"
+          ./scripts/custom_script.sh
