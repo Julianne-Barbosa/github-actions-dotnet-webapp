@@ -5,37 +5,41 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 * * * *'  # Para rodar de hora em hora
+    - cron: '0 * * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository to the runner
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Set up .NET Core SDK
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '6.0.x'
 
-      # Restore dependencies
+      - name: Display .NET version
+        run: dotnet --version
+
+      - name: List files
+        run: ls -la
+
       - name: Restore dependencies
         run: dotnet restore
+        continue-on-error: true 
 
-      # Build the project
       - name: Build
         run: dotnet build --no-restore --configuration Release
+        if: success() 
 
-      # Run tests
       - name: Run tests
         run: dotnet test --no-build --verbosity normal --configuration Release
+        if: success()
 
-      # Run a custom script
       - name: Custom script
         run: |
           echo "Running custom script"
           ./scripts/custom_script.sh
+        if: success() 
