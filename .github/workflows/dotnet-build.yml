@@ -24,8 +24,6 @@ jobs:
       - name: Display .NET version
         run: dotnet --version
 
-      - name: Change to project directory
-        run: cd github4women/github4women.csproj
 
 
       - name: List files
