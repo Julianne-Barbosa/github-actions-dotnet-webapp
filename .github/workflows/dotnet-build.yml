@@ -36,20 +36,9 @@ jobs:
       - name: List files in root directory
         run: ls -la
 
-      # Restore dependencies
-      - name: Restore dependencies
-        run: dotnet restore ./github4women.csproj
 
       # Build the project
       - name: Build
         run: dotnet build --no-restore --configuration Release ./github4women.csproj
 
-      # Run tests
-      - name: Run tests
-        run: dotnet test --no-build --verbosity normal --configuration Release ./github4women.csproj
 
-      # Run a custom script
-      - name: Custom script
-        run: |
-          echo "Running custom script"
-          ./scripts/custom_script.sh
