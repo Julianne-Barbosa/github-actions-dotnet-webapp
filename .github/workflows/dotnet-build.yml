@@ -1,4 +1,4 @@
-name: GitHub Workflow
+name: CI Workflow
 
 on:
   push:
@@ -28,11 +28,11 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore
-        continue-on-error: true 
+        continue-on-error: true
 
       - name: Build
         run: dotnet build --no-restore --configuration Release
-        if: success() 
+        if: success()
 
       - name: Run tests
         run: dotnet test --no-build --verbosity normal --configuration Release
@@ -42,4 +42,4 @@ jobs:
         run: |
           echo "Running custom script"
           ./scripts/custom_script.sh
-        if: success() 
+        if: success()
