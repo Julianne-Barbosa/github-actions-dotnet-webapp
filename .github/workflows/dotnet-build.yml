@@ -24,9 +24,9 @@ jobs:
 
       # Setup .NET Core SDK
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v2
+        uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '8.0.x'
 
       # Display .NET version
       - name: Display .NET version
@@ -38,7 +38,7 @@ jobs:
 
       # Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore ./github4women/github4women.csproj
+        run: dotnet restore ./github4women.csproj
 
       # Build the project
       - name: Build
