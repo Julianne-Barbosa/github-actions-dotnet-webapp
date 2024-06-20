@@ -38,7 +38,7 @@ jobs:
 
       # Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore ./github4women.csproj
+        run: dotnet restore ./github4women/github4women.csproj
 
       # Build the project
       - name: Build
