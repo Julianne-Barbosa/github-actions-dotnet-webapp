@@ -2,13 +2,13 @@ name: github-actions .NET
 
 on:
 push:
-branches:
- -"main" 
+  branches:
+    -"main" 
 pull_request:
-branches: 
- -"main" 
+  branches: 
+    -"main" 
 schedule:
-- cron: '0 0 * * 1'
+- cron: '0 0 * * *'
 
 jobs:
   build:
