@@ -1,0 +1,41 @@
+name: GitHub Workflow
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 * * * *'  # Para rodar de hora em hora
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository to the runner
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Set up .NET Core SDK
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '6.0.x'
+
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # Build the project
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      # Run tests
+      - name: Run tests
+        run: dotnet test --no-build --verbosity normal --configuration Release
+
+      # Run a custom script
+      - name: Custom script
+        run: |
+          echo "Running custom script"
+          ./scripts/custom_script.sh
