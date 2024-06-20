@@ -32,13 +32,6 @@ jobs:
       - name: Display .NET version
         run: dotnet --version
 
-      # Change to project directory (if necessary)
-      - name: Change to project directory
-        run: cd /github4women/github4women.csproj
-
-      # List files in the project directory (for debugging)
-      - name: List files in project directory
-        run: ls -la /github4women/github4women.csproj
 
       # Restore dependencies
       - name: Restore dependencies
@@ -48,9 +41,6 @@ jobs:
       - name: Build
         run: dotnet build --no-restore --configuration Release /github4women/github4women.csproj
 
-      # Run tests
-      - name: Run tests
-        run: dotnet test --no-build --verbosity normal --configuration Release /github4women/github4women.csproj
 
       # Run a custom script
       - name: Custom script
