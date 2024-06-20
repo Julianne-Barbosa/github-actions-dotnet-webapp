@@ -37,8 +37,5 @@ jobs:
         run: ls -la
 
 
-      # Build the project
-      - name: Build
-        run: dotnet build --no-restore --configuration Release ./github4women.csproj
 
 
